@@ -1,12 +1,66 @@
 <form method="POST" action="/signup">
-  <label>
-    Username:
-    <input type="text" name="username">
-  </label>
-  <br>
-  <label>
-    Password:
-    <input type="password" name="password">
-  </label>
-  <button>Signup</button>
+
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" id="username" placeholder="Enter username">
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" placeholder="Password">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+  </div>
+
+  <div class="form-group">
+    <label for="firstname">Firstname</label>
+    <input type="text" class="form-control" id="firstname" placeholder="Enter firstname">
+  </div>
+
+  <div class="form-group">
+    <label for="lastname">Lastname</label>
+    <input type="text" class="form-control" id="lastname" placeholder="Enter lastname">
+  </div>
+
+  <div class="form-group">
+    <label for="address">Address</label>
+    <input type="text" class="form-control" id="address" placeholder="Enter address">
+  </div>
+
+  <div class="form-group input-group mb-3">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="inputGroupSelect01">Role</label>
+    </div>
+    <select class="custom-select" id="inputGroupSelect01">
+      <option selected>Choose...</option>
+      <option value="Farmer">Farmer</option>
+      <option value="Volunteer">Volunteer</option>
+    </select>
+  </div>
+
+
+  <div class="form-group">
+    <label for="profilePhoto">Profile photo</label>
+    <input type="file" class="form-control-file" id="profilePhoto">
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea type="text" class="form-control" id="description" placeholder="Describe yourself" rows="3"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Languages spoken </label>
+    <select class="selectpicker" data-width="fit">
+      <option data-content='English'>English</option>
+      <option data-content="French">French</option>
+      <option data-content='Spanish'>Spanish</option>
+      <option data-content='German'>German</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
