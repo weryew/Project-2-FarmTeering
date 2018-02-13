@@ -2,15 +2,17 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const workSchema = new Schema({
-  type: String,
+  name: String,
   description: String,
   numberOfWorkers: Number,
   hoursExpected: Number,
-  startingDate: Date,
+  startDate: Date,
   endDate: Date,
-  farm: String,
-  rewardsList: Object,
-  hostId: String
+  _farmer: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  },
+  reward: String
 });
 
 module.exports = mongoose.model("Work", workSchema);

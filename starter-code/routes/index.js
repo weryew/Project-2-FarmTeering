@@ -11,8 +11,4 @@ router.get("/moreInfo", (req, res, next) => {
   res.render("info");
 });
 
-//work list
-router.get("/workList", (req, res, next) => {
-  res.render("workList");
-});
 module.exports = router;

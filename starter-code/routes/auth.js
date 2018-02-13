@@ -1,22 +1,31 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const User = require('../models/user');
-const passport = require('passport');
-const bcrypt = require('bcrypt');
+const User = require("../models/user");
+const passport = require("passport");
+const bcrypt = require("bcrypt");
 const saltRounds = 14;
-const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login');
+const { ensureLoggedIn, ensureLoggedOut } = require("connect-ensure-login");
 
-router.get('/signup', ensureLoggedOut(), (req, res, next) => {
-  res.render('auth/signup');
+router.get("/signup", ensureLoggedOut(), (req, res, next) => {
+  res.render("auth/signup");
 });
 
-router.post('/signup', ensureLoggedOut(), (req, res, next) => {
+router.post("/signup", ensureLoggedOut(), (req, res, next) => {
+  console.log("signing up");
   const username = req.body.username;
   const password = req.body.password;
-
+  const firstname = req.body.firstname;
+  const lastname = req.body.lastname;
+  const email = req.body.email;
+  const role = req.body.role;
+  const address = req.body.address;
+  const profilePhoto = req.body.profilePhoto;
+  const description = req.body.description;
+  const birthday = req.body.birthday;
+  const languages = req.body.languages;
   if (!password) {
-    req.flash('error', 'Password is required');
-    return res.redirect('/signup');
+    req.flash("error", "Password is required");
+    return res.redirect("/signup");
   }
 
   bcrypt.genSalt(saltRounds, (err, salt) => {
@@ -26,44 +35,58 @@ router.post('/signup', ensureLoggedOut(), (req, res, next) => {
       const user = new User({
         username,
         password: hash,
+        firstname,
+        lastname,
+        email,
+        role,
+        address,
+        profilePhoto,
+        description,
+        birthday,
+        languages
       });
+      console.log(user);
 
       user.save(err => {
         if (err) {
+          console.log(err);
           if (err.code === 11000) {
-            req.flash('error', `A user with username ${username} already exists`);
-            return res.redirect('/signup');
+            req.flash(
+              "error",
+              `A user with username ${username} already exists`
+            );
+            return res.redirect("/signup");
           } else if (user.errors) {
             Object.values(user.errors).forEach(error => {
-              req.flash('error', error.message);
+              req.flash("error", error.message);
             });
-            return res.redirect('/signup');
+            return res.redirect("/signup");
           }
         }
         if (err) return next(err);
-        res.redirect('/login');
+        res.redirect("/login");
       });
     });
   });
 });
 
-router.get('/login', ensureLoggedOut(), (req, res, next) => {
-  res.render('auth/login');
+router.get("/login", ensureLoggedOut(), (req, res, next) => {
+  res.render("auth/login");
 });
 
 router.post(
-  '/login',
+  "/login",
   ensureLoggedOut(),
-  passport.authenticate('local-login', {
-    successRedirect: '/',
-    failureRedirect: '/login',
-    failureFlash: true,
+  passport.authenticate("local-login", {
+    successRedirect: "/",
+    failureRedirect: "/login",
+    failureFlash: true
   })
 );
 
-router.get('/logout', ensureLoggedIn(), (req, res, next) => {
+router.get("/logout", ensureLoggedIn(), (req, res, next) => {
   req.logout();
-  res.redirect('/login');
+  res.redirect("/login");
 });
 
 module.exports = router;

@@ -1,0 +1,24 @@
+<h1>Edit <%= farm._id %></h1>
+
+<form action="/farms/<%= farm._id %>" method="POST">
+<label>
+Name
+<input type="text" name="name" value="<%= farm.name %>">
+</label>
+<br/>
+
+<label>
+Address
+<input type="text" name="address" value="<%= farm.address %>">
+</label>
+<br/>
+
+<label>
+Description
+<textarea type="text" name="description"><%= farm.description %></textarea>
+</label>
+<br/>
+
+
+  <button type="submit">Save</button>
+</form>

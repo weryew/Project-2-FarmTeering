@@ -1,0 +1,47 @@
+<h1>Edit <%= work._id %></h1>
+
+<form action="/works/<%= work._id %>" method="POST">
+<label>
+Name
+<input type="text" name="name" value="<%= work.name %>">
+</label>
+<br/>
+
+<label>
+Description
+<textarea type="text" name="description"><%= work.description %></textarea>
+</label>
+<br/>
+
+<label>
+Number of workers needed
+<input type="number" name="numberOfWorkers"  value="<%= work.numberOfWorkers %>">
+</label>
+<br/>
+
+<label>
+Hours expected
+<input type="number" name="hoursExpected"  value="<%= work.hoursExpected %>">
+</label>
+<br/>
+
+<label>
+Start Date
+<input type="date" name="startDate"  value="<%= work.startDate %>">
+</label>
+<br/>
+
+<label>
+End Date
+<input type="date" name="endDate"  value="<%= work.endDate %>">
+</label>
+<br/>
+
+<label>
+Reward
+<input type="object" name="reward"  value="<%= work.reward%>">
+</label>
+<br/>
+
+  <button type="submit">Save</button>
+</form>

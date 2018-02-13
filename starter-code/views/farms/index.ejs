@@ -1,0 +1,16 @@
+<h1>Farm List</h1>
+
+<ul>
+  <% farms.forEach((farm) => { %>
+    <li>
+    <%= farm.name %> 
+    <a href="/farms/<%= farm._id %>">View Details</a>
+    </li>
+  <% }) %>
+</ul>
+<p>
+<% if (user.role==="Farmer"){%>
+<a href="/farms/new">
+  Add a farm
+</a>
+<%}%>

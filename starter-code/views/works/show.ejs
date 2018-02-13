@@ -1,0 +1,78 @@
+<h1>
+  <%= work.name %>
+  </h1>
+  <% if ( user._id.equals(work._farmer._id )){%>
+
+<a href="/works/<%= work._id %>/edit">
+  Edit
+</a>
+
+<form action="/works/<%= work._id %>/delete" method="POST">
+  <button type="submit">Delete</button>
+</form>
+
+  <%}%>
+
+<h4>
+  Name:
+  <span>
+    <%= work.name %>
+  </span>
+</h4>
+<br/>
+
+<h4>
+  Description:
+  <span>
+    <%= work.description %>
+  </span>
+</h4>
+<br/>
+
+<h4>
+  Number of workers needed:
+  <span>
+    <%= work.numberOfWorkers %>
+  </span>
+</h4>
+<br/>
+
+<h4>
+  Hours expected:
+  <span>
+    <%= work.hoursExpected %>
+  </span>
+</h4>
+<br/>
+
+<h4>
+  Start Date:
+  <span>
+  <%= work.startDate %>
+  </span>
+</h4>
+<br/>
+
+<h4>
+  End Date:
+  <span>
+  <%= work.endDate %>
+  </span>
+</h4>
+<br/>
+
+<h4>
+  Farmer:
+  <span>
+  <%= work._farmer.firstname + " "+work._farmer.lastname%>
+  </span>
+</h4>
+<br/>
+
+
+<h4>
+  Reward:
+  <span>
+  <%= work.reward%>
+  </span>
+</h4>

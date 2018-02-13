@@ -1,0 +1,17 @@
+<h1>Work List</h1>
+
+<ul>
+  <% works.forEach((work) => { %>
+    <li>
+    <%= work.name %> 
+    <a href="/works/<%= work._id %>">View Details</a>
+    </li>
+  <% }) %>
+</ul>
+
+
+ <% if (user.role==="Farmer"){%>
+<a href="/works/new">
+  Add a work
+</a>
+<%}%>

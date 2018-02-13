@@ -1,0 +1,42 @@
+<h1>
+  <%= farm.name %>
+</h1>
+<% if ( user._id.equals(farm._owner._id )){%>
+<a href="/farms/<%= farm._id %>/edit">
+  Edit
+</a>
+
+<form action="/farms/<%= farm._id %>/delete" method="POST">
+  <button type="submit">Delete</button>
+</form>
+<%}%>
+<h4>
+  Name:
+  <span>
+    <%= farm.name %>
+  </span>
+</h4>
+<br/>
+
+<h4>
+  Address:
+  <span>
+    <%= farm.address %>
+  </span>
+</h4>
+<br/>
+<h4>
+  Description:
+  <span>
+    <%= farm.description %>
+  </span>
+</h4>
+<br/>
+
+<h4>
+  Owner:
+  <span>
+  <%= farm._owner.firstname + " "+farm._owner.lastname%>
+  </span>
+</h4>
+<br/>
