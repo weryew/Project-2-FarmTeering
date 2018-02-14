@@ -4,5 +4,10 @@ body {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+#map {
+  height: calc(100vh - 250px);
+  margin-top: 30px;
+  width: 100%;
 }

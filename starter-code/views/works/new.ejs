@@ -8,7 +8,7 @@
   </ul>
 <% } %>
 
-<form action="/works" method="POST">
+<form action="/farms/<%= farmId %>/works" method="POST">
 <label>
 Name
 <input type="text" name="name" value="<%= work.name %>">

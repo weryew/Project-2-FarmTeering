@@ -8,9 +8,9 @@ const workSchema = new Schema({
   hoursExpected: Number,
   startDate: Date,
   endDate: Date,
-  _farmer: {
+  _farm: {
     type: Schema.Types.ObjectId,
-    ref: "User"
+    ref: "Farm"
   },
   reward: String
 });

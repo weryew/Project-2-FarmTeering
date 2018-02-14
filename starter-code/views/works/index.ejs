@@ -4,14 +4,12 @@
   <% works.forEach((work) => { %>
     <li>
     <%= work.name %> 
-    <a href="/works/<%= work._id %>">View Details</a>
+    <a href="/farms/<%=farmId %>/works/<%=work._id%> ">View details</a>
     </li>
   <% }) %>
 </ul>
 
 
- <% if (user.role==="Farmer"){%>
-<a href="/works/new">
-  Add a work
-</a>
+<% if (user._id.equals(farm._owner)){%>
+<a href="/farms/<%=farmId %>/works/new">Add Work</a>
 <%}%>

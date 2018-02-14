@@ -1,27 +1,32 @@
 const express = require("express");
 const router = express.Router();
 const Work = require("../models/work");
+const Farm = require("../models/farm");
 const ensureLogin = require("connect-ensure-login");
 
-router.get("/", (req, res, next) => {
-  Work.find({}, (err, works) => {
-    if (err) return next(err);
-
-    res.render("works/index", {
-      title: "Works",
-      works: works
+router.get("/farms/:farmId/works/", (req, res, next) => {
+  console.log(req.params.farmId);
+  Farm.findById(req.params.farmId)
+    .populate("works")
+    .exec((err, farm) => {
+      if (err) return next(err);
+      res.render("works/index", {
+        works: farm.works,
+        farmId: req.params.farmId,
+        farm: farm
+      });
     });
-  });
 });
 
-router.get("/new", (req, res, next) => {
+router.get("/farms/:id/works/new", (req, res, next) => {
   res.render("works/new", {
     title: "Create a work",
+    farmId: req.params.id,
     work: {}
   });
 });
 
-router.post("/", (req, res, next) => {
+router.post("/farms/:farmId/works/", (req, res, next) => {
   const workInfo = {
     name: req.body.name,
     description: req.body.description,
@@ -29,13 +34,12 @@ router.post("/", (req, res, next) => {
     hoursExpected: req.body.hoursExpected,
     startDate: req.body.startDate,
     endDate: req.body.endDate,
-    _farmer: req.user._id,
+    _farm: req.params.farmId,
     reward: req.body.reward
   };
-
   const newWork = new Work(workInfo);
 
-  newWork.save(err => {
+  newWork.save((err, work) => {
     if (newWork.errors) {
       return res.render("works/new", {
         title: "Create a work",
@@ -46,33 +50,42 @@ router.post("/", (req, res, next) => {
     if (err) {
       return next(err);
     }
-    return res.redirect("/works");
+    Farm.findByIdAndUpdate(
+      req.params.farmId,
+      { $push: { works: work._id } },
+      err => {
+        if (err) return next(err);
+        return res.redirect(`/farms/${req.params.farmId}/works`);
+      }
+    );
   });
 });
 
-router.get("/:workId", (req, res, next) => {
+router.get("/farms/:farmId/works/:workId", (req, res, next) => {
   Work.findById(req.params.workId)
-    .populate("_farmer")
+    .populate("_farm")
     .exec((err, work) => {
       if (err) return next(err);
       res.render("works/show", {
         title: "Work details - " + work.name,
-        work: work
+        work: work,
+        farmId: req.params.farmId
       });
     });
 });
 
-router.get("/:id/edit", (req, res, next) => {
+router.get("/farms/:farmId/works/:id/edit", (req, res, next) => {
   Work.findById(req.params.id, (err, work) => {
     if (err) return next(err);
     res.render("works/edit", {
       title: "Edit work - " + work.name,
-      work: work
+      work: work,
+      farmId: req.params.farmId
     });
   });
 });
 
-router.post("/:id", (req, res, next) => {
+router.post("/farms/:farmId/works/:id", (req, res, next) => {
   Work.findByIdAndUpdate(
     req.params.id,
     {
@@ -86,15 +99,16 @@ router.post("/:id", (req, res, next) => {
     },
     (err, work) => {
       if (err) return next(err);
-      res.redirect(`/works/${req.params.id}`);
+      res.redirect(`/farms/:farmId/works/${req.params.id}`);
     }
   );
 });
 
-router.post("/:id/delete", (req, res, next) => {
+router.post("/farms/:farmId/works/:id/delete", (req, res, next) => {
+  let farmId = req.params.farmId;
   Work.findByIdAndRemove(req.params.id, (err, work) => {
     if (err) return next(err);
-    res.redirect("/works");
+    res.redirect(`/farms/${farmId}/works`);
   });
 });
 

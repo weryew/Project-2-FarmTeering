@@ -23,9 +23,9 @@ const userSchema = new Schema({
   },
   address: String,
   profilePhoto: {
-    type: String,
-    default:
-      "https://placeholdit.imgix.net/~text?txtsize=33&txt=250%C3%97250&w=250&h=250"
+    type: String
+    // default:
+    //   "https://placeholdit.imgix.net/~text?txtsize=33&txt=250%C3%97250&w=250&h=250"
   },
   description: String,
   Birthday: Date,

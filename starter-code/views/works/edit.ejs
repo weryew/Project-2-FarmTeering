@@ -1,6 +1,6 @@
-<h1>Edit <%= work._id %></h1>
+<h1>Edit Work</h1>
 
-<form action="/works/<%= work._id %>" method="POST">
+<form action="/farms/<%=farmId %>/works/<%= work._id %>" method="POST">
 <label>
 Name
 <input type="text" name="name" value="<%= work.name %>">

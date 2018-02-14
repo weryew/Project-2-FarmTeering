@@ -1,17 +1,17 @@
 <h1>
   <%= work.name %>
   </h1>
-  <% if ( user._id.equals(work._farmer._id )){%>
+  <% if ( user._id.equals(work._farm._owner )){%>
 
-<a href="/works/<%= work._id %>/edit">
+<a href="/farms/<%=farmId %>/works/<%= work._id %>/edit">
   Edit
 </a>
 
-<form action="/works/<%= work._id %>/delete" method="POST">
+<form action="/farms/<%=farmId %>/works/<%= work._id %>/delete" method="POST">
   <button type="submit">Delete</button>
 </form>
 
-  <%}%>
+<%}%>
 
 <h4>
   Name:
@@ -62,9 +62,9 @@
 <br/>
 
 <h4>
-  Farmer:
+  Farm:
   <span>
-  <%= work._farmer.firstname + " "+work._farmer.lastname%>
+  <%= work._farm.name%>
   </span>
 </h4>
 <br/>
@@ -76,3 +76,4 @@
   <%= work.reward%>
   </span>
 </h4>
+
