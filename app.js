@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const favicon = require("serve-favicon");
@@ -15,7 +16,7 @@ const flash = require("connect-flash");
 const mongoose = require("mongoose");
 const moment = require("moment");
 
-mongoose.connect("mongodb://localhost/FarmTeering");
+mongoose.connect(process.env.MONGODB_URI);
 
 const app = express();
 
