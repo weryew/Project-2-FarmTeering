@@ -1,0 +1,24 @@
+<div class=" col-sm-6 col-sm-push-3 monBlock">
+    <hgroup class="col-sm-12 projects-title">
+      <h1>Contact the farmer</h1>
+      <h2>Write your message to <%=farmer.firstname%>  <%=farmer.lastname%></h2>
+    </hgroup>
+
+      <div class="col-sm-12 blog-item">
+     
+      <form method="POST" action="/farms/<%= farmId %>/works/<%= workId %>/<%=farmer._id%>" >
+     <div class="form-group">
+    <label for="description">Message:</label>
+    <textarea type="text" class="form-control" id="message" name="message" placeholder="Write your message here" rows="6"></textarea>
+    </div>
+
+
+    <div class=" row ">
+    <button class="btn btn-success center-block"  >Save</button>
+    </div>
+  
+ 
+    </form>
+
+  </div>
+  </div>

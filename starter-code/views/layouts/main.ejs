@@ -1,32 +1,87 @@
+
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>FarmTeering</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <script
-  src="http://code.jquery.com/jquery-3.2.1.min.js"
-  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-  crossorigin="anonymous"></script>
-  </head>
-  <body>
-  <nav>
-  <a href="/">FarmTeering</a>
-  <a href="/farms"> Farm List</a>
-  <a href="/moreInfo">More information</a>
-  <a href="/signup">Signup</a>
-  <a href="/login">Login</a>
-  <a href="/logout">Logout</a>
-  </nav>
-    <div class="main-container">
-      <%- body -%>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>FarmTeering</title>
+  <link rel="stylesheet" href="/stylesheets/style.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous"/>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700" rel="stylesheet"/>
+
+
+</head>
+<body>
+  <header class="container">
+    <div class="row">
+      <div class="site-branding col-sm-4">
+        <h1 class="site-title" style="color:#5ab85b">FarmTeering</h1>
+      </div>
+      <nav class="col-sm-8 ">
+      
+        <ul class="top-menu" >
+          <li ><a href="/" style="color:#bf6321">Home</a></li>
+          <li><a href="/farms" style="color:#bf6321"> Farm List</a></li>
+          <li><a href="/moreInfo" style="color:#bf6321">More information</a></li>
+          <li> <a href="/signup" style="color:#bf6321">Signup</a></li>
+          <li> <a href="/login" style="color:#bf6321">Login</a></li>
+          <li><a href="/logout" style="color:#bf6321">Logout</a></li>
+        </ul>
+      </nav>
     </div>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="/javascripts/api-methods.js"></script>
+  </header>
 
+  <%- body -%>
 
-    </body>
+  <!--<footer class="footer">
+    <section id="site-info">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3">
+            <h3>Revera</h3>
+            <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum vehicula erat non congue cursus. Aenean auctor nulla quis augue dictum, sed sagittis odio varius? Aliquam nec venenatis turpis. Aenean euismod arcu vel volutpat tristique. In mattis ipsum quis magna feugiat, id tempus metus accumsan.</p>
+          </div>
+          <div class="col-lg-3">
+            <h3>Meta</h3>
+            <ul class="footer-menu">
+              <li><a href="">Log In</a></li>
+              <li><a href="">Entries RSS</a></li>
+              <li><a href="">Comments RSS</a></li>
+              <li><a href="">Wordpress.org</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3">
+            <h3>Archives</h3>
+            <ul class="footer-menu">
+              <li><a href="">September 2015</a></li>
+              <li><a href="">October 2015</a></li>
+              <li><a href="">November 2015</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3">
+            <h3>Recen posts</h3>
+            <ul class="footer-menu">
+              <li><a href="">Etiam mauris tortor, pharetra quis lobortis in, pharetra in diam</a></li>
+              <li><a href="">Nunc libero elit, iaculis nec augue non</a></li>
+              <li><a href="">Falauris sollicitudin quis dolor venenatis facilisis</a></li>
+              <li><a href="">Vivamus blandit ipsum sed arcu euismod</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="legal">
+      <div class="container">
+        Copyright © 2015 revera - Just another demo Sites site. | Revera Theme
+      </div>
+    </section>
+  </footer>-->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAF3ttDIr4Q_xjVRo8FG4Lb89Kg4Qg8_2g&libraries=places&callback=initMap"
+  async defer></script>
+<script type="text/javascript" src="/javascripts/main.js"></script>
+</body>
 </html>

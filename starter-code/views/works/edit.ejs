@@ -1,47 +1,49 @@
-<h1>Edit Work</h1>
-
+<h1 class="greeen">Edit Work</h1>
+<br/><br/>
 <form action="/farms/<%=farmId %>/works/<%= work._id %>" method="POST">
 <label>
 Name
 <input type="text" name="name" value="<%= work.name %>">
 </label>
-<br/>
+<br/><br/>
 
 <label>
 Description
 <textarea type="text" name="description"><%= work.description %></textarea>
 </label>
-<br/>
+<br/><br/>
 
 <label>
 Number of workers needed
 <input type="number" name="numberOfWorkers"  value="<%= work.numberOfWorkers %>">
 </label>
-<br/>
+<br/><br/>
 
 <label>
 Hours expected
 <input type="number" name="hoursExpected"  value="<%= work.hoursExpected %>">
 </label>
 <br/>
-
+<br/>
 <label>
 Start Date
 <input type="date" name="startDate"  value="<%= work.startDate %>">
 </label>
-<br/>
+<br/><br/>
 
 <label>
 End Date
 <input type="date" name="endDate"  value="<%= work.endDate %>">
 </label>
-<br/>
+<br/><br/>
 
 <label>
 Reward
 <input type="object" name="reward"  value="<%= work.reward%>">
 </label>
-<br/>
+<br/><br/>
 
-  <button type="submit">Save</button>
+  <button class="btn btn-success" type="submit">Save</button>
 </form>
+
+

@@ -2,8 +2,11 @@ const express = require("express");
 const router = express.Router();
 const Farm = require("../models/farm");
 const ensureLogin = require("connect-ensure-login");
+const multer = require("multer");
+const upload = multer({ dest: "./public/uploads/" });
+const { ensureLoggedIn, ensureLoggedOut } = require("connect-ensure-login");
 
-router.get("/", (req, res, next) => {
+router.get("/",ensureLoggedIn(), (req, res, next) => {
   Farm.find({}, (err, farms) => {
     if (err) return next(err);
     res.render("farms/index", {
@@ -13,20 +16,24 @@ router.get("/", (req, res, next) => {
   });
 });
 
-router.get("/new", (req, res, next) => {
-  res.render("farms/new", {
-    title: "Create a farm",
-    farm: {}
-  });
-});
+router.get(
+  "/new",
+  [ensureLoggedIn(), upload.single("img")],
+  (req, res, next) => {
+    res.render("farms/new", {
+      title: "Create a farm",
+      farm: {}
+    });
+  }
+);
 
-router.post("/", (req, res, next) => {
+router.post("/", [ensureLoggedIn(), upload.single("img")], (req, res, next) => {
   const farmInfo = {
     name: req.body.name,
+    img: `/uploads/${req.file.filename}`,
     address: req.body.address,
     description: req.body.description,
     _owner: req.user._id
-    //works: []
   };
   const newFarm = new Farm(farmInfo);
 
@@ -45,7 +52,7 @@ router.post("/", (req, res, next) => {
   });
 });
 
-router.get("/:farmId", (req, res, next) => {
+router.get("/:farmId",ensureLoggedIn(), (req, res, next) => {
   Farm.findById(req.params.farmId)
     .populate("_owner")
     .exec((err, farm) => {
@@ -57,7 +64,7 @@ router.get("/:farmId", (req, res, next) => {
     });
 });
 
-router.get("/:id/edit", (req, res, next) => {
+router.get("/:id/edit", ensureLoggedIn(),(req, res, next) => {
   Farm.findById(req.params.id, (err, farm) => {
     if (err) return next(err);
     res.render("farms/edit", {
@@ -67,7 +74,7 @@ router.get("/:id/edit", (req, res, next) => {
   });
 });
 
-router.post("/:id", (req, res, next) => {
+router.post("/:id", ensureLoggedIn(),(req, res, next) => {
   Farm.findByIdAndUpdate(
     req.params.id,
     {
@@ -82,7 +89,7 @@ router.post("/:id", (req, res, next) => {
   );
 });
 
-router.post("/:id/delete", (req, res, next) => {
+router.post("/:id/delete", ensureLoggedIn(),(req, res, next) => {
   Farm.findByIdAndRemove(req.params.id, (err, farm) => {
     if (err) return next(err);
     res.redirect("/farms");

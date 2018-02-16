@@ -1,18 +1,39 @@
-<h1>Farm List</h1>
+<section id="content">
+  <div class="container">
+    <section class="row">
+      <hgroup class="col-sm-12 projects-title">
+        <h1>Farm List</h1>
+       <h2>Find a farm among the list below</h2>
+      </hgroup>
+     
+        <% farms.forEach((farm) => { %>
+            <article class="col-sm-3 project-item">
+              <img class="img-responsive" alt="img-responsive" src="<%=farm.img%>"
+              />
+              <h3>
+                <%= farm.name %>
+                
+<br><br><br>
+              <a class="btn btn-success" href="/farms/<%= farm._id %>" role="button">View Details</a>
+              </h3>
+            </article>
+       
+          <% }) %>
+     
+    </section>
+    <% if (user.role==="Farmer"){%>
+    <section class="row">
+    <hgroup class="col-sm-12 projects-title">
+<h1>Are you a Farmer?</h1>
+<h2>You can add your farm to the list</h2>
+</hgroup>
 
-<ul>
-  <% farms.forEach((farm) => { %>
-    <li>
-    <%= farm.name %> 
-    <a href="/farms/<%= farm._id %>">View Details</a>
-    </li>
-  <% }) %>
-</ul>
-<p>
-<% if (user.role==="Farmer"){%>
-<a href="/farms/new">
-  Add a farm
-</a>
-<%}%>
-
+   
+      <a  role="button" class="btn btn-success "  href="/farms/new">
+        Add a farm
+      </a>
     
+</section>
+<%}%>
+  </div>
+</section>

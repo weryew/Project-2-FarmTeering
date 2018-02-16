@@ -13,22 +13,27 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
 const mongoose = require("mongoose");
+const moment = require("moment");
 
 mongoose.connect("mongodb://localhost/FarmTeering");
 
 const app = express();
 
 // view engine setup
+app.set("layout", "layouts/main");
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
-app.set("layout", "layouts/main");
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger("dev"));
 app.use(ejsLayout);
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(
+  bodyParser.urlencoded({
+    extended: false
+  })
+);
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
@@ -36,7 +41,9 @@ app.use(
     secret: "farmTeering",
     resave: false,
     saveUninitialized: true,
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection
+    })
   })
 );
 
@@ -58,18 +65,27 @@ passport.use(
       passReqToCallback: true
     },
     (req, username, password, done) => {
-      User.findOne({ username }, (err, user) => {
-        if (err) return done(err);
-        if (!user) {
-          return done(null, false, { message: "Incorrect username" });
-        }
-        bcrypt.compare(password, user.password, (err, isTheSame) => {
+      User.findOne(
+        {
+          username
+        },
+        (err, user) => {
           if (err) return done(err);
-          if (!isTheSame)
-            return done(null, false, { message: "Incorrect password" });
-          done(null, user);
-        });
-      });
+          if (!user) {
+            return done(null, false, {
+              message: "Incorrect username"
+            });
+          }
+          bcrypt.compare(password, user.password, (err, isTheSame) => {
+            if (err) return done(err);
+            if (!isTheSame)
+              return done(null, false, {
+                message: "Incorrect password"
+              });
+            done(null, user);
+          });
+        }
+      );
     }
   )
 );
@@ -106,5 +122,39 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.render("error");
 });
+
+//map
+// const apiKey = "AIzaSyBMSEIZp7ESOpI--gMqux6w99l1mT8Pp6c";
+// const mapStyle = [
+//   {
+//     featureType: "farm",
+//     elementType: "all",
+//     stylers: [
+//       {
+//         color: "#f2e5d4"
+//       }
+//     ]
+//   }
+// ];
+// const map = new google.maps.Map(document.getElementsByClassName("map")[0], {
+//   zoom: 7,
+//   center: { lat: 52.632469, lng: -1.689423 },
+//   styles: mapStyle
+// });
+// map.data.loadGeoJson("farms.json");
+
+// map.data.addListener("click", event => {
+//   let category = event.feature.getProperty("category");
+//   let name = event.feature.getProperty("name");
+//   let address = event.feature.getProperty("address");
+//   let description = event.feature.getProperty("description");
+
+//   let owner = event.feature.getProperty("owner");
+//   let position = event.feature.getGeometry().get();
+//   infoWindow.setContent(content);
+//   infoWindow.setPosition(position);
+//   infoWindow.setOptions({ pixelOffset: new google.maps.Size(0, -30) });
+//   infoWindow.open(map);
+// });
 
 module.exports = app;

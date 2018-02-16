@@ -20,7 +20,6 @@ router.post(
   "/signup",
   [ensureLoggedOut(), upload.single("profilePhoto")],
   (req, res, next) => {
-    console.log("signing up");
     const username = req.body.username;
     const password = req.body.password;
     const firstname = req.body.firstname;
@@ -30,8 +29,7 @@ router.post(
     const address = req.body.address;
     const profilePhoto = `/uploads/${req.file.filename}`;
     const description = req.body.description;
-    const birthday = req.body.birthday;
-    const languages = req.body.languages;
+    
     if (!password) {
       req.flash("error", "Password is required");
       return res.redirect("/signup");
@@ -51,8 +49,7 @@ router.post(
           address,
           profilePhoto,
           description,
-          birthday,
-          languages
+        
         });
         console.log(user);
 

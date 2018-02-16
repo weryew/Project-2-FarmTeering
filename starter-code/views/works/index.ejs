@@ -1,15 +1,39 @@
-<h1>Work List</h1>
 
-<ul>
-  <% works.forEach((work) => { %>
-    <li>
-    <%= work.name %> 
-    <a href="/farms/<%=farmId %>/works/<%=work._id%> ">View details</a>
-    </li>
-  <% }) %>
-</ul>
+<section id="content">
+  <div class="container">
+    <section class="row">
+      <hgroup class="col-sm-12 projects-title">
+        <h1>Work List</h1>
+       <h2>Find a work among the list below</h2>
+      </hgroup>
+     
+        <% works.forEach((work) => { %>
+            <article class="col-sm-3 project-item">
+              <img class="img-responsive" alt="img-responsive" src="<%=work.picture%>"
+              />
+              <h3>
+                <%= work.name %>
+                
+<br><br><br>
+              <a class="btn btn-success" href="/farms/<%=farmId %>/works/<%=work._id%>" role="button">View Details</a>
+              </h3>
+            </article>
+       
+          <% }) %>
+     
+    </section>
+    <% if (user._id.equals(farm._owner)){%>
+    <section class="row">
+    <hgroup class="col-sm-12 projects-title">
+<h1>Do you have a new work?</h1>
+<h2>You can add your work to the list</h2>
+</hgroup>
 
+</section>
 
-<% if (user._id.equals(farm._owner)){%>
-<a href="/farms/<%=farmId %>/works/new">Add Work</a>
+<a role="button" class="btn btn-success " href="/farms/<%=farmId %>/works/new">Add Work</a>
 <%}%>
+
+
+  </div>
+</section>

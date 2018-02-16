@@ -1,48 +1,43 @@
-<h1>
-  <%= farm.name %>
-</h1>
-<% if ( user._id.equals(farm._owner._id )){%>
-  <a href="/farms/<%= farm._id %>/edit">
-    Edit
-  </a>
 
-  <form action="/farms/<%= farm._id %>/delete" method="POST">
-    <button type="submit">Delete</button>
-  </form>
-  <%}%>
-    <h4>
-      Name:
-      <span>
+
+
+<div class=" col-sm-6 col-sm-push-3 monBlock">
+    <hgroup class="col-sm-12 projects-title">
+      <h1>Farm details</h1>
+      <h2>Find a description of the farm</h2>
+    </hgroup>
+    <article class="col-sm-12 blog-item">
+      <img class="img-responsive" alt="img-responsive" src="<%= farm.img %>">
+      <h2>
         <%= farm.name %>
-      </span>
-    </h4>
-    <br/>
-
-    <h4>
-      Address:
+      </h2>
+      <h3>Farm address:
+      </h3>
       <span>
         <%= farm.address %>
-      </span>
-    </h4>
-    <br/>
-    <h4>
-      Description:
-      <span>
+     </span>
+     <h3>Farm description:
+     </h3>
+      <p>
         <%= farm.description %>
-      </span>
-    </h4>
-    <br/>
+      </p>
+      <h3>
+        <a style="color:#8a6d3b" id="owner" href="/farms/<%= farm._id %>/farmer/<%=farm._owner._id%>">Owner Details</a>
+      </h3>
 
-    <h4>
-      <a href="/farms/<%= farm._id %>/farmer/<%=farm._owner._id%>">Owner:
-      <span>
-        <%= farm._owner.firstname + " "+farm._owner.lastname%>
-      </span>
-    </h4>
-    </a>
-    <br/>
+      <h3>
+        <a style="color:#8a6d3b" id="worklist" href="/farms/<%= farm._id %>/works/">Work List</a>
+      </h3>
+      <br><br>
+      <% if ( user._id.equals(farm._owner._id )){%>
+  <a class="btn btn-success" href="/farms/<%= farm._id %>/edit">
+    Edit
+  </a>
+<br><br>
+  <form action="/farms/<%= farm._id %>/delete" method="POST">
+    <button class="btn btn-success" type="submit">Delete</button>
+  </form>
+<%}%>
+    </article>
 
-
-    <h4>
-      <a href="/farms/<%= farm._id %>/works/">Work List</a>
-    </h4>
+</div>

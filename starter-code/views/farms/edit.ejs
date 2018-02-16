@@ -1,24 +1,24 @@
-<h1>Edit farm</h1>
-
+<h1 class="greeen">Edit farm</h1>
+<br/><br/>
 <form action="/farms/<%= farm._id %>" method="POST">
 <label>
 Name
 <input type="text" name="name" value="<%= farm.name %>">
 </label>
 <br/>
-
+<br/>
 <label>
 Address
 <input type="text" name="address" value="<%= farm.address %>">
 </label>
 <br/>
-
+<br/>
 <label>
 Description
 <textarea type="text" name="description"><%= farm.description %></textarea>
 </label>
 <br/>
+<br/>
 
-
-  <button type="submit">Save</button>
+  <button class="btn btn-success" type="submit">Save</button>
 </form>

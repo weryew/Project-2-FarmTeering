@@ -1,79 +1,86 @@
-<h1>
-  <%= work.name %>
-  </h1>
-  <% if ( user._id.equals(work._farm._owner )){%>
-
-<a href="/farms/<%=farmId %>/works/<%= work._id %>/edit">
-  Edit
-</a>
-
-<form action="/farms/<%=farmId %>/works/<%= work._id %>/delete" method="POST">
-  <button type="submit">Delete</button>
-</form>
-
-<%}%>
-
-<h4>
-  Name:
-  <span>
-    <%= work.name %>
-  </span>
-</h4>
-<br/>
-
-<h4>
-  Description:
-  <span>
-    <%= work.description %>
-  </span>
-</h4>
-<br/>
-
-<h4>
-  Number of workers needed:
-  <span>
-    <%= work.numberOfWorkers %>
-  </span>
-</h4>
-<br/>
-
-<h4>
-  Hours expected:
-  <span>
-    <%= work.hoursExpected %>
-  </span>
-</h4>
-<br/>
-
-<h4>
-  Start Date:
-  <span>
-  <%= work.startDate %>
-  </span>
-</h4>
-<br/>
-
-<h4>
-  End Date:
-  <span>
-  <%= work.endDate %>
-  </span>
-</h4>
-<br/>
-
-<h4>
-  Farm:
-  <span>
-  <%= work._farm.name%>
-  </span>
-</h4>
-<br/>
 
 
-<h4>
-  Reward:
-  <span>
-  <%= work.reward%>
-  </span>
-</h4>
+<div class=" col-sm-6 col-sm-push-3 monBlock" >
+          <hgroup class="col-sm-12 projects-title">
+            <h1>Work details</h1>
+            <h2>Find a description of the work</h2>
+          </hgroup>
 
+    <div class="col-sm-12 blog-item" >
+  
+      <img class="img-responsive" alt="img-responsive" src="<%= work.picture %>">
+
+      <h2>
+        <%= work.name %>
+      </h>
+    
+     <h3>Work description: </h3>
+      <p>
+        <%= work.description %>
+      </p>
+      <h3>
+      Number of workers needed:
+      </h3>
+      <span>
+        <%= work.numberOfWorkers %>
+      </span>
+      
+      <h3>
+      Hours expected:
+      </h3>
+      <span>
+        <%= work.hoursExpected %>
+      </span>
+
+    <h3>
+    Start Date:
+    </h3>
+    <span>
+    <%= work.startDate %>
+    </span>
+  
+  <h3>
+    End Date:
+    </h3>
+    <span>
+    <%= work.endDate %>
+    </span>
+  
+  <h3>
+    Farm:
+    </h3>
+    <span>
+    <%= work._farm.name%>
+    </span>
+
+  
+  <h3>
+    Reward:
+    </h3>
+    <span>
+    <%= work.reward%>
+    </span>
+
+      <br><br>
+
+      <% if ( user._id.equals(work._farm._owner )){%>
+
+      <a class="btn btn-success" href="/farms/<%=farmId %>/works/<%= work._id %>/edit">
+        Edit
+      </a>
+      <br><br>
+      <form action="/farms/<%=farmId %>/works/<%= work._id %>/delete" method="POST">
+        <button  class="btn btn-success" type="submit">Delete</button>
+      </form>
+      
+      <%}%>
+
+      <% if ( user.role === "Volunteer") {%>
+      <a class="btn btn-success" href="/farms/<%=farmId %>/works/<%= work._id %>/<%=work._farm._owner%>/message ">Contact the farmer</a>
+
+      <%}%>
+
+
+    </div>
+
+</div>

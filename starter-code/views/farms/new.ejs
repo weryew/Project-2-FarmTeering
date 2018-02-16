@@ -1,4 +1,4 @@
-<h1>Create a farm</h1>
+<h1 class="greeen">Create a farm</h1>
 
 <% if (typeof(errors) !== "undefined"){ %>
   <ul>
@@ -7,26 +7,41 @@
     <% } %>
   </ul>
 <% } %>
-
-<form action="/farms" method="POST">
+<br/><br/>
+<form action="/farms" method="POST" enctype="multipart/form-data">
+<label for="img">Picture</label>
+<input type="file" class="form-control-file" id="img" name="img" value="<%= farm.img %>">
+<br/><br/>
 <label>
 Name
 <input type="text" name="name" value="<%= farm.name %>">
 </label>
-<br/>
-
-<label>
-Address
-<input type="text" name="address" value="<%= farm.address %>">
-</label>
-<br/>
+<br/><br/>
 
 <label>
 Description
 <textarea type="text" name="description"><%= farm.description %></textarea>
 </label>
-<br/>
+<br/><br/>
 
-  <button type="submit">Create Farm</button>
+
+<label>Address
+<input  id="pac-input" type="text" name="address" value="<%= farm.address %>" class="controls" placeholder="Enter your address">
+</label>
+
+
+
+ 
+<br>
+<div id="map"></div>
+
+
+<br/><br/>
+
+<button class="btn btn-success" type="submit">Create Farm</button>
 </form>
+
+
+
+
 

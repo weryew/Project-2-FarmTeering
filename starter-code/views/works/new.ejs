@@ -1,4 +1,6 @@
-<h1>Create a work</h1>
+
+
+<h1 class="greeen">Create a work</h1>
 
 <% if (typeof(errors) !== "undefined"){ %>
   <ul>
@@ -7,43 +9,47 @@
     <% } %>
   </ul>
 <% } %>
+<br/><br/>
+<form action="/farms/<%= farmId %>/works" method="POST" enctype="multipart/form-data">
 
-<form action="/farms/<%= farmId %>/works" method="POST">
+<label for="picture">Picture</label>
+<input type="file" class="form-control-file" id="picture" name="picture" value="<%= work.picture %>">
+<br/><br/>
 <label>
 Name
 <input type="text" name="name" value="<%= work.name %>">
 </label>
-<br/>
+<br/><br/>
 
 <label>
 Description
 <textarea type="text" name="description"><%= work.description %></textarea>
 </label>
-<br/>
+<br/><br/>
 
 <label>
 Number of workers needed
 <input type="number" name="numberOfWorkers"  value="<%= work.numberOfWorkers %>">
 </label>
-<br/>
+<br/><br/>
 
 <label>
 Hours expected
 <input type="number" name="hoursExpected"  value="<%= work.hoursExpected %>">
 </label>
-<br/>
+<br/><br/>
 
 <label>
 Start Date
 <input type="date" name="startDate"  value="<%= work.startDate %>">
 </label>
-<br/>
+<br/><br/>
 
 <label>
 End Date
 <input type="date" name="endDate"  value="<%= work.endDate %>">
 </label>
-<br/>
+<br/><br/>
 
 
 
@@ -51,8 +57,8 @@ End Date
 Reward
 <input type="object" name="reward"  value="<%= work.reward%>">
 </label>
-<br/>
+<br/><br/>
 
-  <button type="submit">Create Work</button>
+  <button class="btn btn-success" type="submit">Create Work</button>
 </form>
 

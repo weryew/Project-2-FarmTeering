@@ -1,52 +1,40 @@
-<h1>
-Owner details
-</h1>
-<br>
-<h4>
-  Firstname:
-  <span>
-    <%= farmer.firstname %>
-  </span>
-  </h4>
-  <br>
-  <h4>Lastname:
+<div class=" col-sm-6 col-sm-push-3 monBlock">
+  <hgroup class="col-sm-12 projects-title">
+    <h1>Owner Profile</h1>
+    <h2>Find details about the farmer</h2>
+  </hgroup>
+
+  <div class="col-sm-12 blog-item">
+    <img class="img-responsive" alt="img-responsive" src="<%= farmer.profilePhoto %>">
+
+    <h3>
+      Firstname: </h3>
+    <span>
+      <%= farmer.firstname %>
+    </span>
+
+    <h3>Lastname:</h3>
     <span>
       <%= farmer.lastname %>
     </span>
-  </h4>
-  <br>
-  <h4>
-    Email address:
+
+    <h3>
+      Email address: </h3>
     <span>
       <%= farmer.email %>
     </span>
-  </h4>
-  <br>
-  <h4>
-    Profile photo:
-    <span>
-    <img class="profile-picture" src="<%= farmer.profilePhoto %>">
-    </span>
-  </h4>
-  <br>
 
-  <h4>
-    Description:
+
+    <h3>
+      Description:
+    </h3>
     <span>
       <%= farmer.description %>
     </span>
-  </h4>
-  <br>
-  <h4>
-    Languages spoken:
-    <span>
-      <%= farmer.languages %>
-    </span>
-  </h4>
-  <br>
-  <h4>
-    Birthday:
-    <span>
-      <%= farmer.birthday %>
-    </span>
-  </h4>
+
+ 
+
+
+  </div>
+ 
+  </div>

@@ -3,6 +3,7 @@ const Work = require("./work");
 const Schema = mongoose.Schema;
 
 const farmSchema = new Schema({
+  img: String,
   name: String,
   address: String,
   description: String,
